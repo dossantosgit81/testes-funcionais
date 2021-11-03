@@ -1,6 +1,7 @@
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -99,5 +100,24 @@ public class TesteCampoTreinamento {
 		allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(2, allSelectedOptions.size());
 	}
-
+	
+	@Test
+	public void deveInteragirComBotoes() {
+		WebDriver driver  = new ChromeDriver();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		WebElement botao = driver.findElement(By.id("buttonSimple"));
+		botao.click();
+		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+	}
+	
+	@Test
+	//@Ignore <-> //Usado para testes imcompletos
+	public void deveInteragirComLinks() {
+		WebDriver driver  = new ChromeDriver();
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		driver.findElement(By.linkText("Voltar")).click();
+		
+		//Usado para testes imcompletos
+		//Assert.fail();
+	}
 }
